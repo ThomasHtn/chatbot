@@ -1,0 +1,35 @@
+import streamlit as st
+import requests
+
+# Constants
+base_url = 'http://localhost:9500'
+
+# Page title
+st.set_page_config(page_title="Chatbot Multilingue", layout="centered")
+st.title("💬 Multilanguage Chatbot with Sentiment et Translation")
+
+# Init chat list
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+user_input = st.text_input("Write your message in french :", "")
+
+# Send button
+if st.button("Envoyer") and user_input:
+    response = requests.post(base_url+"/process/", json={"text": user_input})
+    data = response.json()
+
+    st.session_state.messages.append({
+        "user": user_input,
+        "translation": data["translation"],
+        "sentiment": data["sentiment"],
+        "bot": data["response"]
+    })
+
+# History
+for chat in reversed(st.session_state.messages):
+    st.markdown("**🧑 Utilisateur :** " + chat["user"])
+    st.markdown("**🔁 Traduction :** " + chat["translation"])
+    st.markdown("**💡 Sentiment :** " + chat["sentiment"])
+    st.markdown("**🤖 Chatbot :** " + chat["bot"])
+    st.markdown("---")
