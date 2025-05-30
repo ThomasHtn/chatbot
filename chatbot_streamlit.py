@@ -6,7 +6,7 @@ base_url = 'http://localhost:9500'
 
 # Page title
 st.set_page_config(page_title="Chatbot Multilingue", layout="centered")
-st.title("💬 Multilanguage Chatbot with Sentiment et Translation")
+st.title("💬 Multilanguage Chatbot with Sentiment & Translation")
 
 # Init chat list
 if "messages" not in st.session_state:
@@ -15,7 +15,7 @@ if "messages" not in st.session_state:
 user_input = st.text_input("Write your message in french :", "")
 
 # Send button
-if st.button("Envoyer") and user_input:
+if st.button("Send") and user_input:
     response = requests.post(base_url+"/process/", json={"text": user_input})
     data = response.json()
 
@@ -28,8 +28,8 @@ if st.button("Envoyer") and user_input:
 
 # History
 for chat in reversed(st.session_state.messages):
-    st.markdown("**🧑 Utilisateur :** " + chat["user"])
-    st.markdown("**🔁 Traduction :** " + chat["translation"])
+    st.markdown("**🧑 User :** " + chat["user"])
+    st.markdown("**🔁 Translation :** " + chat["translation"])
     st.markdown("**💡 Sentiment :** " + chat["sentiment"])
     st.markdown("**🤖 Chatbot :** " + chat["bot"])
     st.markdown("---")
