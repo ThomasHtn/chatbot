@@ -40,11 +40,14 @@ def process(msg: Message):
     sentiment = get_sentiment(sentiment_label)
 
     # Chatbot response
-    # TODO
+    input_ids = tokenizer.encode(user_text + tokenizer.eos_token, return_tensors="pt")
+    input_combined = torch.cat([chat_history, input_ids], dim=-1) if chat_history is not None else input_ids
+    chat_history = model.generate(input_combined, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+    bot_reply = tokenizer.decode(chat_history[:, input_combined.shape[-1]:][0], skip_special_tokens=True)
 
     return {
         "original": user_text,
         "translation": translation,
         "sentiment": sentiment,
-        "response": 'todo',
+        "response": bot_reply,
     }
