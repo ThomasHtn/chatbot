@@ -16,15 +16,22 @@ user_input = st.text_input("Write your message in french :", "")
 
 # Send button
 if st.button("Send") and user_input:
-    response = requests.post(base_url+"/process/", json={"text": user_input})
-    data = response.json()
 
-    st.session_state.messages.append({
-        "user": user_input,
-        "translation": data["translation"],
-        "sentiment": data["sentiment"],
-        "bot": data["response"]
-    })
+    try: 
+        response = requests.post(base_url+"/process/", json={"text": user_input})
+        data = response.json()
+
+        st.session_state.messages.append({
+            "user": user_input,
+            "translation": data["translation"],
+            "sentiment": data["sentiment"],
+            "bot": data["response"]
+        })
+
+    except req.exceptions.RequestException as e:
+        st.error(f"Api connection error : {e}")
+    except Exception as e :
+        st.error(f"An error occured: {e}")
 
 # History
 for chat in reversed(st.session_state.messages):

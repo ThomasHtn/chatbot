@@ -1,0 +1,10 @@
+2025-05-30 10:02:21.765 | INFO     | chatbot_api:process:44 - User message : Quel temps fait-il aujourd'hui ?
+2025-05-30 10:02:22.392 | INFO     | chatbot_api:process:48 - Translation EN : What's the weather like today?
+2025-05-30 10:02:22.420 | INFO     | chatbot_api:process:53 - Sentiment : Positif (5 stars)
+2025-05-30 10:02:22.913 | INFO     | chatbot_api:process:60 - Chatbot response : C'est pas faux.
+2025-05-30 10:02:22.913 | SUCCESS  | chatbot_api:process:69 - Response : {'original': "Quel temps fait-il aujourd'hui ?", 'translation': "What's the weather like today?", 'sentiment': 'Positif', 'response': "C'est pas faux."}
+2025-05-30 10:06:25.920 | INFO     | chatbot_api:process:44 - User message : On mange quoi ce midi ?
+2025-05-30 10:06:26.520 | INFO     | chatbot_api:process:49 - Translation EN : What do we eat for lunch?
+2025-05-30 10:06:26.546 | INFO     | chatbot_api:process:54 - Sentiment : Neutre (3 stars)
+2025-05-30 10:06:27.040 | INFO     | chatbot_api:process:61 - Chatbot response : C'est pas faux.
+2025-05-30 10:06:27.040 | SUCCESS  | chatbot_api:process:70 - Response : {'original': 'On mange quoi ce midi ?', 'translation': 'What do we eat for lunch?', 'sentiment': 'Neutre', 'response': "C'est pas faux."}
